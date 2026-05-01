@@ -1,0 +1,34 @@
+$ python scripts/run_pipeline.py
+[INFO] Scraping federalreserve.gov speeches (2022-2024, max 40/yr, 1 req/sec)
+[INFO] Scraped 120 speeches in 142s
+[INFO] Computing lexicon scores (Apel & Grimaldi-style hawk/dove word lists)
+[INFO] Training TF-IDF + LogisticRegression(class_weight='balanced', random_state=42)
+[INFO] Train/test 96/24
+
+Held-out classifier
++--------------+----------+---------+--------+------+
+| class        | precision| recall  |  f1    |  n   |
++--------------+----------+---------+--------+------+
+| dovish       |  0.889   |  0.571  |  0.696 |  14  |
+| hawkish      |  0.600   |  0.900  |  0.720 |  10  |
++--------------+----------+---------+--------+------+
+| accuracy                              0.708 |  24  |
++--------------+----------+---------+--------+------+
+
+[INFO] Loading 2y-yield series (yfinance ^IRX, 13-week T-bill proxy)
+[INFO] Joining each speech to next-30d yield change (forward asof)
+
+Backtest summary (n=120 speeches, horizon=30 days)
++---------------------------------+----------+
+| metric                          | value    |
++---------------------------------+----------+
+| Pearson corr (score, dY)        |  +0.336  |
+| Spearman corr (score, dY)       |  +0.415  |
+| Mean dY hawkish (pp)            |  +0.198  |
+| Mean dY dovish (pp)             |  +0.121  |
+| Hit rate (sign agreement)       |   0.408  |
+| Sharpe-like (annualized)        |   1.115  |
++---------------------------------+----------+
+
+[INFO] Wrote docs/hist_hawk_dove.png, docs/scatter_score_yield.png
+[INFO] Wrote data/metrics.json, data/backtest.json, data/model.joblib

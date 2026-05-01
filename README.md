@@ -9,6 +9,26 @@ the labels are a *lexicon proxy* (Apel & Grimaldi-style word lists), not a
 human-curated gold set. The model learns to mimic that proxy from raw text;
 the backtest then asks whether the proxy actually moves with rates.
 
+## Demo
+
+![Score vs next-30d 2y yield change (Pearson +0.336, Spearman +0.415)](docs/scatter_score_yield.png)
+
+```text
+$ python scripts/run_pipeline.py
+Held-out classifier accuracy: 0.7083  (96 train / 24 test)
+
+Backtest (n=120 speeches, 30-day horizon)
+  Pearson corr (score, dY)        +0.336
+  Spearman corr (score, dY)       +0.415
+  Mean dY hawkish (pp)            +0.198
+  Mean dY dovish (pp)             +0.121
+  Sharpe-like (annualized)         1.115
+```
+
+Full output: [`docs/cli-demo.txt`](docs/cli-demo.txt) | Score distribution: [`docs/hist_hawk_dove.png`](docs/hist_hawk_dove.png)
+
+---
+
 ## Problem
 
 Fed officials speak frequently. Markets parse each speech for whether the
