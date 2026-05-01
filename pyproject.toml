@@ -1,13 +1,31 @@
 [project]
 name = "m5-fed-speech"
 version = "0.1.0"
-description = "Yash Patel - Finance Project: m5-fed-speech"
+description = "Yash Patel - Finance Project: M5 Fed Speech Hawkish/Dovish Classifier"
 readme = "README.md"
-requires-python = ">=3.12"
-dependencies = []
+requires-python = ">=3.10"
+dependencies = [
+    "requests>=2.31",
+    "beautifulsoup4>=4.12",
+    "lxml>=4.9",
+    "pandas>=2.0",
+    "numpy>=1.26",
+    "scikit-learn>=1.3",
+    "yfinance>=0.2.40",
+    "matplotlib>=3.8",
+    "fredapi>=0.5.1",
+]
 
 [project.optional-dependencies]
-dev = ["pytest>=8.0"]
+dev = ["pytest>=8.0", "jupyter>=1.0", "ipykernel>=6.0"]
+bert = ["transformers>=4.40", "torch>=2.2"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
