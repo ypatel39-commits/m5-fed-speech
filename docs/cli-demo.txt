@@ -32,3 +32,9 @@ Backtest summary (n=120 speeches, horizon=30 days)
 
 [INFO] Wrote docs/hist_hawk_dove.png, docs/scatter_score_yield.png
 [INFO] Wrote data/metrics.json, data/backtest.json, data/model.joblib
+
+# Classifier and backtest metrics above are read directly from
+# data/metrics.json and data/backtest.json, produced by a real pipeline
+# run on 120 Fed speeches (2022-2024) with yfinance ^IRX 2y-yield proxy
+# (random_state=42). Surrounding [INFO] lines are illustrative.
+
